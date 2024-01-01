@@ -3,6 +3,7 @@ import pygame
 import assets
 import configs
 from objects.background import Background
+from objects.bird import Bird
 from objects.column import Column
 from objects.floor import Floor
 
@@ -22,6 +23,8 @@ Background(1, sprites)
 Floor(0, sprites)
 Floor(1, sprites)
 
+bird = Bird(sprites)
+
 pygame.time.set_timer(CREATE_COLUMN, 2000)
 
 while running:
@@ -30,6 +33,8 @@ while running:
             running = False
         if event.type == CREATE_COLUMN:
             Column(sprites)
+
+        bird.handle_events(event)
 
     sprites.draw(screen)
     sprites.update()
