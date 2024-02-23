@@ -3,6 +3,8 @@ import pygame.sprite
 import assets
 import configs
 from layer import Layer
+from objects.column import Column
+from objects.floor import Floor
 
 
 class Bird(pygame.sprite.Sprite):
@@ -47,3 +49,9 @@ class Bird(pygame.sprite.Sprite):
             if self.frame_index >= len(self.images):
                 self.frame_index = 0
             self.last_update = pygame.time.get_ticks()
+
+    def check_collision(self, sprites):
+        for sprite in sprites:
+            if isinstance(sprite, (Column, Floor)) and pygame.sprite.collide_mask(self, sprite):
+                return True
+        return False
