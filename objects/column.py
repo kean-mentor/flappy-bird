@@ -32,6 +32,7 @@ class Column(pygame.sprite.Sprite):
         )
         self.image.blit(self.pipe_top, self.pipe_top_rect)
         self.image.blit(self.pipe_bottom, self.pipe_bottom_rect)
+        self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect(
             midleft=(configs.SCREEN_WIDTH, random.uniform(min_y, max_y))
         )

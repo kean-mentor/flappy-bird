@@ -12,6 +12,7 @@ class Floor(pygame.sprite.Sprite):
         self.add(*groups)
 
         self.image = assets.get_sprite("floor")
+        self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect(
             bottomleft=(index * configs.SCREEN_WIDTH, configs.SCREEN_HEIGHT)
         )

@@ -19,6 +19,7 @@ class Bird(pygame.sprite.Sprite):
             assets.get_sprite("redbird-midflap"),
             assets.get_sprite("redbird-upflap"),
         ]
+        self.mask = pygame.mask.from_surface(self.images[1])
         self.frame_index = 0
         self.delta_y = 0
 
