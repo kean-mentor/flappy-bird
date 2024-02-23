@@ -13,7 +13,7 @@ class Column(pygame.sprite.Sprite):
         self.layer = Layer.COLUMN
         self.add(*groups)
 
-        self.gap = 100
+        self.gap = configs.GAP
         self.sprite = assets.get_sprite("pipe-green")
         self.sprite_rect = self.sprite.get_rect()
 
