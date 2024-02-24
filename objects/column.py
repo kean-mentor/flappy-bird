@@ -37,8 +37,15 @@ class Column(pygame.sprite.Sprite):
             midleft=(configs.SCREEN_WIDTH, random.uniform(min_y, max_y))
         )
 
+        self.is_passed = False
+
     def update(self):
         self.rect.x -= 2
-
         if self.rect.right <= 0:
             self.kill()
+
+    def check_passed(self):
+        if self.rect.right < 50 and not self.is_passed:
+            self.is_passed = True
+            return True
+        return False

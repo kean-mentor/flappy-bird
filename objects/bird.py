@@ -39,10 +39,9 @@ class Bird(pygame.sprite.Sprite):
         if self.rect.top <= 0:
             self.rect.top = 0
 
-    def handle_events(self, event):
-        if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
-            self.delta_y = 0
-            self.delta_y -= 6
+    def flap(self, event):
+        self.delta_y = 0
+        self.delta_y -= 6
 
     def _calculate_frame_index(self):
         if pygame.time.get_ticks() - self.last_update > 40:
