@@ -1,6 +1,6 @@
 import random
 
-import pygame.sprite
+import pygame
 
 import assets
 import configs
@@ -44,7 +44,7 @@ class Column(pygame.sprite.Sprite):
         if self.rect.right <= 0:
             self.kill()
 
-    def check_passed(self):
+    def check_passed(self) -> bool:
         if self.rect.right < configs.BIRD_POS + 1 and not self.is_passed:
             self.is_passed = True
             return True

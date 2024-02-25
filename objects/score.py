@@ -21,7 +21,7 @@ class Score(pygame.sprite.Sprite):
         self.number_height = self.sprites[0].get_height()
         self.number_gap = 1
 
-    def increase_score(self, increment=1):
+    def increase_score(self, increment: int = 1) -> None:
         self.value += increment
         if self.value > 0:
             assets.play_sound("point")

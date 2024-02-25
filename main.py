@@ -1,3 +1,5 @@
+from typing import Tuple
+
 import pygame
 
 import assets
@@ -24,7 +26,7 @@ assets.load_sounds()
 sprites = pygame.sprite.LayeredUpdates()
 
 
-def create_sprites():
+def create_sprites() -> Tuple[Bird, Score]:
     Background(0, sprites)
     Background(1, sprites)
     Floor(0, sprites)
@@ -50,7 +52,7 @@ while running:
                     game_start_message.kill()
                     score.increase_score()  # Starting score is -1, so I can hide it from START screen
                 else:
-                    bird.flap(event)
+                    bird.flap()
 
             if event.key == pygame.K_ESCAPE:  # Reset game
                 for sprite in sprites:

@@ -1,4 +1,4 @@
-import pygame.sprite
+import pygame
 
 import assets
 import configs
@@ -39,19 +39,19 @@ class Bird(pygame.sprite.Sprite):
         if self.rect.top <= 0:
             self.rect.top = 0
 
-    def flap(self, event):
+    def flap(self) -> None:
         self.delta_y = 0
         self.delta_y -= 6
         assets.play_sound("wing")
 
-    def _calculate_frame_index(self):
+    def _calculate_frame_index(self) -> None:
         if pygame.time.get_ticks() - self.last_update > 40:
             self.frame_index += 1
             if self.frame_index >= len(self.images):
                 self.frame_index = 0
             self.last_update = pygame.time.get_ticks()
 
-    def check_collision(self, sprites):
+    def check_collision(self, sprites: pygame.sprite.LayeredUpdates) -> bool:
         for sprite in sprites:
             if isinstance(sprite, (Column, Floor)) and pygame.sprite.collide_mask(self, sprite):
                 return True
