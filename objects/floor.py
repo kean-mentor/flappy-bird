@@ -1,4 +1,4 @@
-import pygame.sprite
+import pygame
 
 import assets
 import configs
