@@ -23,6 +23,8 @@ class Score(pygame.sprite.Sprite):
 
     def increase_score(self, increment=1):
         self.value += increment
+        if self.value > 0:
+            assets.play_sound("point")
 
     def update(self):
         # Don't update it `config.FPS` times per second, update only when score is changed

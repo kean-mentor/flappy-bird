@@ -20,6 +20,7 @@ game_stared = False  # Bird is flying
 game_over = False  # Bird hits a column or floor -> show game over screen
 
 assets.load_sprites()
+assets.load_sounds()
 sprites = pygame.sprite.LayeredUpdates()
 
 
@@ -69,6 +70,7 @@ while running:
                 score.increase_score()
 
         if bird.check_collision(sprites):
+            assets.play_sound("hit")
             game_over = True
             game_stared = False
             GameOverMessage(sprites)

@@ -42,6 +42,7 @@ class Bird(pygame.sprite.Sprite):
     def flap(self, event):
         self.delta_y = 0
         self.delta_y -= 6
+        assets.play_sound("wing")
 
     def _calculate_frame_index(self):
         if pygame.time.get_ticks() - self.last_update > 40:
