@@ -45,7 +45,7 @@ class Column(pygame.sprite.Sprite):
             self.kill()
 
     def check_passed(self):
-        if self.rect.right < 50 and not self.is_passed:
+        if self.rect.right < configs.BIRD_POS + 1 and not self.is_passed:
             self.is_passed = True
             return True
         return False

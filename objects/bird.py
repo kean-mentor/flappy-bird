@@ -33,7 +33,7 @@ class Bird(pygame.sprite.Sprite):
         self.delta_y += configs.GRAVITY
         self.rect.y += self.delta_y
 
-        if self.rect.x < 50:
+        if self.rect.x < configs.BIRD_POS:
             self.rect.x += 3
 
         if self.rect.top <= 0:
