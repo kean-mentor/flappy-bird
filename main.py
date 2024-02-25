@@ -8,6 +8,7 @@ from objects.column import Column
 from objects.floor import Floor
 from objects.game_over_message import GameOverMessage
 from objects.game_start_message import GameStartMessage
+from objects.score import Score
 
 pygame.init()
 pygame.display.set_caption("Droppy Bird!")
@@ -17,7 +18,6 @@ CREATE_COLUMN = pygame.USEREVENT + 1
 running = True  # Main loop is running
 game_stared = False  # Bird is flying
 game_over = False  # Bird hits a column or floor -> show game over screen
-score = 0
 
 assets.load_sprites()
 sprites = pygame.sprite.LayeredUpdates()
@@ -28,10 +28,10 @@ def create_sprites():
     Background(1, sprites)
     Floor(0, sprites)
     Floor(1, sprites)
-    return Bird(sprites)
+    return Bird(sprites), Score(sprites)
 
 
-bird = create_sprites()
+bird, score = create_sprites()
 game_start_message = GameStartMessage(sprites)
 pygame.time.set_timer(CREATE_COLUMN, 2000)
 
@@ -47,6 +47,7 @@ while running:
                 if not game_stared:
                     game_stared = True
                     game_start_message.kill()
+                    score.increase_score()  # Starting score is -1, so I can hide it from START screen
                 else:
                     bird.flap(event)
 
@@ -55,8 +56,9 @@ while running:
                     sprite.kill()
 
                 game_over = False
-                bird = create_sprites()
+                bird, score = create_sprites()
                 game_stared = True
+                score.increase_score()  # Starting score is -1, so I can hide it from START screen
 
     # Update (if needed)
     if game_stared:
@@ -64,14 +66,12 @@ while running:
 
         for sprite in sprites:
             if isinstance(sprite, Column) and sprite.check_passed():
-                score += 1
+                score.increase_score()
 
         if bird.check_collision(sprites):
             game_over = True
             game_stared = False
             GameOverMessage(sprites)
-            print(f"Score: {score}")
-            score = 0
 
     # Render
     sprites.draw(screen)
