@@ -11,7 +11,7 @@ from objects.game_start_message import GameStartMessage
 from objects.score import Score
 
 pygame.init()
-pygame.display.set_caption("Droppy Bird!")
+pygame.display.set_caption("Flappy Bird!")
 screen = pygame.display.set_mode((configs.SCREEN_WIDTH, configs.SCREEN_HEIGHT))
 clock = pygame.time.Clock()
 CREATE_COLUMN = pygame.USEREVENT + 1
